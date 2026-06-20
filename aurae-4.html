@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURAE Parfums</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --marfim: #F2E9DE;
+    --areia: #DCC09A;
+    --dourado: #C9A15A;
+    --ambar: #7A4E2B;
+    --preto: #1B1B1B;
+    --branco: #FAFAF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--marfim);
+    color: var(--preto);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(242,233,222,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,161,90,0.12);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--preto);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--preto);
+    text-decoration: none;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .admin-btn {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    background: none;
+    border: 1px solid rgba(201,161,90,0.35);
+    padding: 7px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .admin-btn:hover { background: var(--dourado); color: var(--marfim); }
+
+  /* HERO — imagem full screen */
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #e8ddd0 0%, #c9a87a 50%, #7a4e2b 100%);
+    z-index: 0;
+  }
+  .hero-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(27,27,27,0.7) 0%, rgba(27,27,27,0.1) 50%, transparent 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px 80px;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(242,233,222,0.7);
+    margin-bottom: 16px;
+    animation: fadeUp 1s 0.3s both;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 14vw, 140px);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--marfim);
+    line-height: 1;
+    animation: fadeUp 1s 0.5s both;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(242,233,222,0.75);
+    margin-top: 16px;
+    letter-spacing: 0.04em;
+    animation: fadeUp 1s 0.7s both;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s 1.2s both;
+  }
+  .hero-scroll span {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(242,233,222,0.5);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(242,233,222,0.5), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* INTRO TEXT — estilo Guerlain */
+  .intro {
+    padding: 100px 24px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .intro-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 32px;
+  }
+  .intro p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--preto);
+    opacity: 0.85;
+  }
+
+  /* COLLECTION — cards editoriais */
+  .collection {
+    background: var(--branco);
+  }
+  .collection-header {
+    padding: 80px 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .collection-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dourado);
+  }
+  .collection-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    opacity: 0.35;
+  }
+
+  /* PRODUTO CARD — full editorial */
+  .product-editorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    border-top: 1px solid rgba(201,161,90,0.1);
+    margin-top: 48px;
+  }
+  .product-editorial.reverse { direction: rtl; }
+  .product-editorial.reverse > * { direction: ltr; }
+
+  .product-image-wrap {
+    position: relative;
+    overflow: hidden;
+    min-height: 560px;
+  }
+  .product-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .product-image-wrap:hover img { transform: scale(1.04); }
+
+  .product-image-placeholder {
+    width: 100%; height: 100%;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .palette-light .product-image-placeholder { background: linear-gradient(135deg, #e8ddd0, #c9a87a); }
+  .palette-dark .product-image-placeholder { background: linear-gradient(135deg, #2a2a2a, #1B1B1B); }
+  .palette-rose .product-image-placeholder { background: linear-gradient(135deg, #3d2820, #2C1F1A); }
+  .palette-violet .product-image-placeholder { background: linear-gradient(135deg, #2a1f30, #1E1520); }
+  .palette-green .product-image-placeholder { background: linear-gradient(135deg, #1a2a1a, #141C14); }
+  .palette-blue .product-image-placeholder { background: linear-gradient(135deg, #151d26, #111820); }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .palette-dark .product-info,
+  .palette-rose .product-info,
+  .palette-violet .product-info,
+  .palette-green .product-info,
+  .palette-blue .product-info { background: var(--preto); color: var(--marfim); }
+
+  .palette-dark { background: var(--preto); }
+  .palette-rose { background: #2C1F1A; }
+  .palette-violet { background: #1E1520; }
+  .palette-green { background: #141C14; }
+  .palette-blue { background: #111820; }
+
+  .product-number {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    color: var(--dourado);
+    margin-bottom: 20px;
+  }
+  .palette-rose .product-number { color: #C4967A; }
+  .palette-violet .product-number { color: #7B5C8A; }
+  .palette-green .product-number { color: #6B8C6E; }
+  .palette-blue .product-number { color: #4A6B8A; }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .product-type {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 32px;
+  }
+  .palette-rose .product-type { color: #C4967A; }
+  .palette-violet .product-type { color: #7B5C8A; }
+  .palette-green .product-type { color: #6B8C6E; }
+  .palette-blue .product-type { color: #4A6B8A; }
+
+  .product-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--dourado);
+    margin-bottom: 32px;
+    opacity: 0.5;
+  }
+  .product-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    opacity: 0.75;
+    margin-bottom: 36px;
+  }
+  .product-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+  .note-tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid rgba(201,161,90,0.35);
+    padding: 5px 14px;
+    color: var(--dourado);
+  }
+  .palette-rose .note-tag { color: #C4967A; border-color: rgba(196,150,122,0.35); }
+  .palette-violet .note-tag { color: #7B5C8A; border-color: rgba(123,92,138,0.35); }
+  .palette-green .note-tag { color: #6B8C6E; border-color: rgba(107,140,110,0.35); }
+  .palette-blue .note-tag { color: #4A6B8A; border-color: rgba(74,107,138,0.35); }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--dourado);
+    letter-spacing: 0.04em;
+  }
+  .palette-rose .product-price { color: #C4967A; }
+  .palette-violet .product-price { color: #7B5C8A; }
+  .palette-green .product-price { color: #6B8C6E; }
+  .palette-blue .product-price { color: #4A6B8A; }
+
+  .btn-sample {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: var(--dourado);
+    color: var(--preto);
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-sample:hover { opacity: 0.82; }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-text .label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 32px;
+    display: block;
+  }
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+  .about-text p {
+    font-size: 13px;
+    line-height: 2;
+    opacity: 0.6;
+    margin-bottom: 16px;
+  }
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 48px;
+  }
+  .value h4 {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 8px;
+  }
+  .value p { font-size: 12px; line-height: 1.7; opacity: 0.55; }
+
+  .about-visual {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--areia), var(--dourado), var(--ambar));
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .about-visual svg { opacity: 0.12; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--preto);
+    color: var(--marfim);
+    padding: 120px 40px;
+    text-align: center;
+  }
+  .contact .label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    display: block;
+    margin-bottom: 32px;
+  }
+  .contact h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .contact p { font-size: 12px; opacity: 0.45; margin-bottom: 48px; letter-spacing: 0.05em; }
+  .email-form {
+    display: flex;
+    max-width: 420px;
+    margin: 0 auto 56px;
+    border-bottom: 1px solid rgba(201,161,90,0.35);
+  }
+  .email-form input {
+    flex: 1;
+    background: none; border: none; outline: none;
+    color: var(--marfim);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; letter-spacing: 0.08em;
+    padding: 14px 0;
+  }
+  .email-form input::placeholder { opacity: 0.28; text-transform: uppercase; letter-spacing: 0.2em; font-size: 9px; }
+  .email-form button {
+    background: none; border: none;
+    color: var(--dourado);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; padding: 14px 0 14px 20px;
+    transition: opacity 0.3s;
+  }
+  .email-form button:hover { opacity: 0.65; }
+  .social-links { display: flex; justify-content: center; gap: 36px; }
+  .social-links a {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--marfim); text-decoration: none; opacity: 0.35;
+    transition: opacity 0.3s;
+  }
+  .social-links a:hover { opacity: 1; }
+
+  /* FIXED CTA */
+  .fixed-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: var(--preto);
+    border-top: 1px solid rgba(201,161,90,0.15);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .fixed-cta.visible { transform: translateY(0); }
+  .fixed-cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--marfim);
+    letter-spacing: 0.05em;
+  }
+  .fixed-cta-text span { color: var(--dourado); font-style: italic; }
+  .fixed-cta-btn {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: var(--dourado);
+    color: var(--preto);
+    border: none;
+    padding: 12px 28px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    text-decoration: none;
+  }
+  .fixed-cta-btn:hover { opacity: 0.82; }
+
+  /* FOOTER */
+  footer {
+    background: var(--preto);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer span { font-size: 9px; letter-spacing: 0.15em; opacity: 0.22; color: var(--marfim); }
+
+  /* ADMIN */
+  .admin-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(27,27,27,0.97);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 60px 40px;
+  }
+  .admin-overlay.active { display: block; }
+  .admin-panel { max-width: 800px; margin: 0 auto; color: var(--marfim); }
+  .admin-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 56px; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(201,161,90,0.18);
+  }
+  .admin-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 300; letter-spacing: 0.15em;
+  }
+  .close-btn {
+    background: none; border: none; color: var(--marfim);
+    font-size: 22px; cursor: pointer; opacity: 0.45;
+    transition: opacity 0.3s; font-family: 'Montserrat', sans-serif;
+  }
+  .close-btn:hover { opacity: 1; }
+  .admin-section { margin-bottom: 44px; }
+  .admin-section h3 {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--dourado); margin-bottom: 20px;
+  }
+  .product-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .product-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,161,90,0.1);
+    transition: border-color 0.3s;
+  }
+  .product-item:hover { border-color: rgba(201,161,90,0.28); }
+  .product-item-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 3px;
+  }
+  .product-item-info span { font-size: 9px; letter-spacing: 0.15em; opacity: 0.35; text-transform: uppercase; }
+  .product-item-actions { display: flex; gap: 10px; }
+  .btn-edit, .btn-delete {
+    background: none; border: 1px solid;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 7px 14px; cursor: pointer; transition: all 0.3s;
+  }
+  .btn-edit { border-color: rgba(201,161,90,0.35); color: var(--dourado); }
+  .btn-edit:hover { background: var(--dourado); color: var(--preto); }
+  .btn-delete { border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.28); }
+  .btn-delete:hover { border-color: #c0392b; color: #c0392b; }
+  .btn-add {
+    background: none; border: 1px solid rgba(201,161,90,0.35);
+    color: var(--dourado); font-family: 'Montserrat', sans-serif;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 13px 26px; cursor: pointer; transition: all 0.3s; width: 100%;
+  }
+  .btn-add:hover { background: var(--dourado); color: var(--preto); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.82); z-index: 2000;
+    align-items: center; justify-content: center; padding: 40px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #1f1f1f;
+    border: 1px solid rgba(201,161,90,0.18);
+    padding: 44px; width: 100%; max-width: 540px;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 300; letter-spacing: 0.1em;
+    color: var(--marfim); margin-bottom: 32px;
+  }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block; font-size: 9px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 9px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,161,90,0.18); color: var(--marfim);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300;
+    padding: 13px 15px; outline: none; transition: border-color 0.3s; letter-spacing: 0.04em;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: rgba(201,161,90,0.48);
+  }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group select option { background: #1f1f1f; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 32px; }
+  .btn-save {
+    flex: 1; background: var(--dourado); border: none; color: var(--preto);
+    font-family: 'Montserrat', sans-serif; font-size: 9px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 15px; cursor: pointer; transition: opacity 0.3s; font-weight: 500;
+  }
+  .btn-save:hover { opacity: 0.83; }
+  .btn-cancel {
+    background: none; border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.38); font-family: 'Montserrat', sans-serif;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 15px 22px; cursor: pointer; transition: all 0.3s;
+  }
+  .btn-cancel:hover { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.65); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 80px; right: 32px;
+    background: var(--dourado); color: var(--preto);
+    font-family: 'Montserrat', sans-serif; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 14px 24px; z-index: 9999;
+    opacity: 0; transform: translateY(8px);
+    transition: all 0.4s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .admin-btn { padding: 7px 12px; }
+
+    .hero-content { padding: 0 20px 100px; }
+
+    .product-editorial {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      direction: ltr !important;
+    }
+    .product-image-wrap { min-height: 72vw; }
+    .product-info { padding: 44px 24px 56px; }
+    .product-name { font-size: 36px; }
+
+    .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .about-visual { aspect-ratio: 16/9; }
+    .about-values { grid-template-columns: 1fr 1fr; }
+
+    .contact { padding: 80px 24px; }
+    .email-form { max-width: 100%; }
+
+    .fixed-cta { padding: 14px 20px; }
+    .fixed-cta-text { font-size: 13px; }
+
+    footer { padding: 22px 20px; flex-direction: column; gap: 6px; text-align: center; }
+    .admin-overlay { padding: 32px 16px; }
+    .modal { padding: 28px 18px; }
+    .modal-actions { flex-direction: column; }
+    .product-item { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AURAE</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Coleção</a></li>
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+  <button class="admin-btn" onclick="openAdmin()">Administrar</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img id="heroBg" src="" alt="" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Perfumaria Autoral · Brasil</p>
+    <h1 class="hero-title">AURAE</h1>
+    <p class="hero-tagline">Essência que permanece. Memória que desperta.</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Descobrir</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="intro">
+  <p class="intro-label">A Marca</p>
+  <p>O rastro que você deixa diz mais do que qualquer palavra. AURAE nasce do encontro entre luz e sombra, memória e presença — uma perfumaria autoral para quem transforma essência em identidade.</p>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="collection-header">
+    <span class="collection-label">Coleção</span>
+    <span class="collection-count" id="collectionCount"></span>
+  </div>
+  <div id="productsContainer"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div class="about-text">
+      <span class="label">Manifesto</span>
+      <h2>Uma perfumaria que transforma presença em essência.</h2>
+      <p>Inspirada na luz, na pele, nas resinas e nas memórias que viajam através do tempo. Sofisticada, emocional, autoral.</p>
+      <p>Cada fragrância é uma obra — formulada à mão, pensada para durar além do momento.</p>
+      <div class="about-values">
+        <div class="value"><h4>Luz</h4><p>Ilumina, revela, transforma.</p></div>
+        <div class="value"><h4>Memória</h4><p>Conecta o passado ao presente.</p></div>
+        <div class="value"><h4>Matéria</h4><p>Resinas, flores e ingredientes nobres.</p></div>
+        <div class="value"><h4>Essência</h4><p>Mais que perfume. Presença.</p></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <svg width="180" height="180" viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="26" r="9" stroke="white" stroke-width="0.8"/>
+        <line x1="30" y1="35" x2="30" y2="54" stroke="white" stroke-width="0.8"/>
+        <line x1="30" y1="10" x2="30" y2="4" stroke="white" stroke-width="0.8"/>
+        <line x1="30" y1="4" x2="24" y2="10" stroke="white" stroke-width="0.8"/>
+        <line x1="30" y1="4" x2="36" y2="10" stroke="white" stroke-width="0.8"/>
+        <line x1="20" y1="16" x2="15" y2="11" stroke="white" stroke-width="0.6"/>
+        <line x1="40" y1="16" x2="45" y2="11" stroke="white" stroke-width="0.6"/>
+        <line x1="17" y1="26" x2="11" y2="26" stroke="white" stroke-width="0.6"/>
+        <line x1="43" y1="26" x2="49" y2="26" stroke="white" stroke-width="0.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <span class="label">Seja o primeiro a saber</span>
+  <h2>Em breve, disponível.</h2>
+  <p>Cadastre seu email e receba acesso antecipado à coleção.</p>
+  <div class="email-form">
+    <input type="email" id="emailInput" placeholder="Seu email">
+    <button onclick="handleEmail()">Notifique-me</button>
+  </div>
+  <div class="social-links">
+    <a href="https://instagram.com/aurae.parfums" target="_blank">Instagram</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 AURAE Parfums</span>
+  <span>Perfumaria Autoral · Brasil</span>
+</footer>
+
+<!-- FIXED CTA -->
+<div class="fixed-cta" id="fixedCta">
+  <span class="fixed-cta-text">Solicitar <span>amostra</span></span>
+  <a class="fixed-cta-btn" id="fixedCtaLink" href="https://wa.me/55?text=Olá! Gostaria de solicitar uma amostra da AURAE Parfums." target="_blank">Falar no WhatsApp</a>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <h2>AURAE · Admin</h2>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-section">
+      <h3>WhatsApp</h3>
+      <div class="form-group">
+        <label>Seu número (com DDI e DDD)</label>
+        <input type="text" id="waNumber" placeholder="5511999999999" oninput="saveWa()">
+      </div>
+    </div>
+    <div class="admin-section">
+      <h3>Imagem do Hero</h3>
+      <div class="form-group">
+        <label>URL da imagem de fundo (hero)</label>
+        <input type="text" id="heroImageUrl" placeholder="https://i.imgur.com/..." oninput="saveHeroImage()">
+      </div>
+    </div>
+    <div class="admin-section">
+      <h3>Fragrâncias</h3>
+      <div class="product-list" id="adminProductList"></div>
+      <button class="btn-add" onclick="openModal()">+ Adicionar Fragrância</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Nova Fragrância</h3>
+    <div class="form-group"><label>Nome</label><input type="text" id="fieldName" placeholder="ex: Perle Dorée"></div>
+    <div class="form-group"><label>Tipo</label><input type="text" id="fieldType" placeholder="ex: Eau de Parfum · 30ml"></div>
+    <div class="form-group"><label>Descrição</label><textarea id="fieldDesc" placeholder="Descrição poética da fragrância..."></textarea></div>
+    <div class="form-group"><label>Notas (separadas por vírgula)</label><input type="text" id="fieldNotes" placeholder="ex: Jasmin, Pêra, Musgo Branco"></div>
+    <div class="form-group"><label>Preço</label><input type="text" id="fieldPrice" placeholder="ex: R$ 130"></div>
+    <div class="form-group"><label>URL da Imagem (Imgur recomendado)</label><input type="text" id="fieldImage" placeholder="https://i.imgur.com/..."></div>
+    <div class="form-group">
+      <label>Paleta do Card</label>
+      <select id="fieldPalette">
+        <option value="light">⬜ Claro — Marfim</option>
+        <option value="dark">⬛ Escuro — Preto</option>
+        <option value="rose">🌸 Rosa Poudré</option>
+        <option value="violet">💜 Violet — Roxo</option>
+        <option value="green">🌿 Verde Musgo</option>
+        <option value="blue">🌊 Azul Ardósia</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-save" onclick="saveProduct()">Salvar</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // State
+  let products = JSON.parse(localStorage.getItem('aurae_products') || 'null') || [
+    { id: 1, name: "Perle Dorée", type: "Eau de Parfum · 30ml", desc: "Um floral luminoso que evoca manhãs douradas. Delicado e radiante, como luz filtrada por pétalas.", notes: ["Jasmin","Pêra","Musgo Branco","Âmbar"], price: "R$ 130", image: "", palette: "light" },
+    { id: 2, name: "Velvet Noir", type: "Eau de Parfum · 30ml", desc: "Um amadeirado moderno e sombrio. Profundo como veludo, seco como madeira envelhecida ao entardecer.", notes: ["Cedro","Patchouli","Musgo","Cashmeran"], price: "R$ 130", image: "", palette: "dark" }
+  ];
+
+  let editingId = null;
+
+  function save() { localStorage.setItem('aurae_products', JSON.stringify(products)); }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  function getAccentColor(palette) {
+    const map = { light: '#C9A15A', dark: '#DCC09A', rose: '#C4967A', violet: '#7B5C8A', green: '#6B8C6E', blue: '#4A6B8A' };
+    return map[palette] || '#C9A15A';
+  }
+
+  function renderProducts() {
+    const container = document.getElementById('productsContainer');
+    document.getElementById('collectionCount').textContent = `${products.length} fragrância${products.length !== 1 ? 's' : ''}`;
+    const wa = localStorage.getItem('aurae_wa') || '55';
+    container.innerHTML = products.map((p, i) => `
+      <div class="product-editorial palette-${p.palette || 'light'} ${i % 2 === 1 ? 'reverse' : ''}">
+        <div class="product-image-wrap">
+          ${p.image
+            ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=product-image-placeholder></div>'">`
+            : `<div class="product-image-placeholder">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="26" r="9" stroke="${getAccentColor(p.palette)}" stroke-width="0.8" opacity="0.35"/>
+                  <line x1="30" y1="35" x2="30" y2="54" stroke="${getAccentColor(p.palette)}" stroke-width="0.8" opacity="0.35"/>
+                  <line x1="30" y1="10" x2="30" y2="4" stroke="${getAccentColor(p.palette)}" stroke-width="0.8" opacity="0.35"/>
+                  <line x1="30" y1="4" x2="24" y2="10" stroke="${getAccentColor(p.palette)}" stroke-width="0.8" opacity="0.35"/>
+                  <line x1="30" y1="4" x2="36" y2="10" stroke="${getAccentColor(p.palette)}" stroke-width="0.8" opacity="0.35"/>
+                </svg>
+              </div>`
+          }
+        </div>
+        <div class="product-info">
+          <div class="product-number">0${i + 1}</div>
+          <h2 class="product-name">${p.name}</h2>
+          <div class="product-type">${p.type}</div>
+          <div class="product-divider"></div>
+          <p class="product-desc">${p.desc}</p>
+          <div class="product-notes">${p.notes.map(n => `<span class="note-tag">${n}</span>`).join('')}</div>
+          <div class="product-footer">
+            <span class="product-price">${p.price}</span>
+            <a class="btn-sample" href="https://wa.me/${wa}?text=Olá! Gostaria de solicitar uma amostra de ${encodeURIComponent(p.name)} da AURAE Parfums." target="_blank">Solicitar Amostra</a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderAdminList() {
+    document.getElementById('adminProductList').innerHTML = products.map(p => `
+      <div class="product-item">
+        <div class="product-item-info"><h4>${p.name}</h4><span>${p.type}</span></div>
+        <div class="product-item-actions">
+          <button class="btn-edit" onclick="editProduct(${p.id})">Editar</button>
+          <button class="btn-delete" onclick="deleteProduct(${p.id})">Remover</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openAdmin() {
+    document.getElementById('waNumber').value = localStorage.getItem('aurae_wa') || '';
+    document.getElementById('heroImageUrl').value = localStorage.getItem('aurae_hero') || '';
+    renderAdminList();
+    document.getElementById('adminOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function saveWa() {
+    localStorage.setItem('aurae_wa', document.getElementById('waNumber').value.trim());
+    renderProducts();
+  }
+
+  function saveHeroImage() {
+    const url = document.getElementById('heroImageUrl').value.trim();
+    localStorage.setItem('aurae_hero', url);
+    document.getElementById('heroBg').src = url;
+  }
+
+  function openModal(id = null) {
+    editingId = id;
+    document.getElementById('modalTitle').textContent = id ? 'Editar Fragrância' : 'Nova Fragrância';
+    if (id) {
+      const p = products.find(x => x.id === id);
+      document.getElementById('fieldName').value = p.name;
+      document.getElementById('fieldType').value = p.type;
+      document.getElementById('fieldDesc').value = p.desc;
+      document.getElementById('fieldNotes').value = p.notes.join(', ');
+      document.getElementById('fieldPrice').value = p.price;
+      document.getElementById('fieldImage').value = p.image || '';
+      document.getElementById('fieldPalette').value = p.palette || 'light';
+    } else {
+      ['fieldName','fieldType','fieldDesc','fieldNotes','fieldPrice','fieldImage'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('fieldPalette').value = 'light';
+    }
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); editingId = null; }
+
+  function editProduct(id) { openModal(id); }
+  function deleteProduct(id) {
+    if (!confirm('Remover esta fragrância?')) return;
+    products = products.filter(p => p.id !== id);
+    save(); renderProducts(); renderAdminList();
+    showToast('Fragrância removida');
+  }
+
+  function saveProduct() {
+    const name = document.getElementById('fieldName').value.trim();
+    if (!name) { alert('Nome obrigatório.'); return; }
+    const data = {
+      name,
+      type: document.getElementById('fieldType').value.trim(),
+      desc: document.getElementById('fieldDesc').value.trim(),
+      notes: document.getElementById('fieldNotes').value.split(',').map(n => n.trim()).filter(Boolean),
+      price: document.getElementById('fieldPrice').value.trim(),
+      image: document.getElementById('fieldImage').value.trim(),
+      palette: document.getElementById('fieldPalette').value
+    };
+    if (editingId) {
+      products = products.map(p => p.id === editingId ? { ...p, ...data } : p);
+      showToast('Fragrância atualizada');
+    } else {
+      data.id = Date.now();
+      products.push(data);
+      showToast('Fragrância adicionada');
+    }
+    save(); renderProducts(); renderAdminList(); closeModal();
+  }
+
+  function handleEmail() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) { showToast('Email inválido'); return; }
+    document.getElementById('emailInput').value = '';
+    showToast('Obrigado — você será o primeiro a saber.');
+  }
+
+  // Fixed CTA on scroll
+  window.addEventListener('scroll', () => {
+    const cta = document.getElementById('fixedCta');
+    if (window.scrollY > window.innerHeight * 0.6) {
+      cta.classList.add('visible');
+    } else {
+      cta.classList.remove('visible');
+    }
+  });
+
+  // Init
+  const heroSaved = localStorage.getItem('aurae_hero');
+  if (heroSaved) document.getElementById('heroBg').src = heroSaved;
+  renderProducts();
+</script>
+</body>
+</html>
